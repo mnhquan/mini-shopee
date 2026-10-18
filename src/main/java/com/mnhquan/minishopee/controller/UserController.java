@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mnhquan.minishopee.dto.UserRequest;
-import com.mnhquan.minishopee.dto.UserResponse;
+import com.mnhquan.minishopee.dto.request.UserRequest;
+import com.mnhquan.minishopee.dto.response.UserResponse;
 import com.mnhquan.minishopee.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,27 +22,27 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("api/v1/users")
+    @PostMapping("/api/v1/users")
     public UserResponse createUser(@RequestBody UserRequest request) {
         return userService.createUser(request);
     }
 
-    @GetMapping("api/v1/users")
+    @GetMapping("/api/v1/users")
     public List<UserResponse> getAllUser() {
         return userService.getAllUsers();
     }
 
-    @GetMapping("api/v1/users/{id}")
+    @GetMapping("/api/v1/users/{id}")
     public UserResponse getUserById(@PathVariable("id") String id) {
         return userService.getUserById(id);
     }
 
-    @PutMapping("api/v1/users/{id}")
+    @PutMapping("/api/v1/users/{id}")
     public UserResponse updateUser(@PathVariable("id") String id, @RequestBody UserRequest request) {
         return userService.updateUser(id, request);
     }
 
-    @DeleteMapping("api/v1/users/{id}")
+    @DeleteMapping("/api/v1/users/{id}")
     public String deleteUser(@PathVariable("id") String id) {
         userService.deleteUser(id);
         return "User has been deleted successfully";

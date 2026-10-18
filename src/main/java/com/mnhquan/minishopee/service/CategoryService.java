@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.mnhquan.minishopee.dto.CategoryRequest;
-import com.mnhquan.minishopee.dto.CategoryResponse;
+import com.mnhquan.minishopee.dto.request.CategoryRequest;
+import com.mnhquan.minishopee.dto.response.CategoryResponse;
 import com.mnhquan.minishopee.entity.Category;
 import com.mnhquan.minishopee.repository.CategoryRepository;
 

@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mnhquan.minishopee.dto.CategoryRequest;
-import com.mnhquan.minishopee.dto.CategoryResponse;
+import com.mnhquan.minishopee.dto.request.CategoryRequest;
+import com.mnhquan.minishopee.dto.response.CategoryResponse;
 import com.mnhquan.minishopee.service.CategoryService;
 
 import lombok.RequiredArgsConstructor;

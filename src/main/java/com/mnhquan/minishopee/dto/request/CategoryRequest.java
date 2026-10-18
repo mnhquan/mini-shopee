@@ -1,4 +1,4 @@
-package com.mnhquan.minishopee.dto;
+package com.mnhquan.minishopee.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

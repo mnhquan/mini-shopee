@@ -1,4 +1,4 @@
-package com.mnhquan.minishopee.dto;
+package com.mnhquan.minishopee.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 

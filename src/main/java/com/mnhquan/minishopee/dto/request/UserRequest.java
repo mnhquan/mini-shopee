@@ -1,4 +1,4 @@
-package com.mnhquan.minishopee.dto;
+package com.mnhquan.minishopee.dto.request;
 
 import com.mnhquan.minishopee.entity.Role;
 import lombok.Getter;
@@ -14,5 +14,4 @@ public class UserRequest {
     private String phoneNumber;
     private String address;
     private Role role;
-
 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.mnhquan.minishopee.dto.UserRequest;
-import com.mnhquan.minishopee.dto.UserResponse;
+import com.mnhquan.minishopee.dto.request.UserRequest;
+import com.mnhquan.minishopee.dto.response.UserResponse;
 import com.mnhquan.minishopee.entity.User;
 import com.mnhquan.minishopee.repository.UserRepository;
 
