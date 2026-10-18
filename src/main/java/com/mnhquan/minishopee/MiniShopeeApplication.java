@@ -9,5 +9,4 @@ public class MiniShopeeApplication {
     public static void main(String[] args) {
         SpringApplication.run(MiniShopeeApplication.class, args);
     }
-
 }

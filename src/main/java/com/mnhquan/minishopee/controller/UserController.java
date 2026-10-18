@@ -2,7 +2,6 @@ package com.mnhquan.minishopee.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +14,13 @@ import com.mnhquan.minishopee.dto.UserRequest;
 import com.mnhquan.minishopee.dto.UserResponse;
 import com.mnhquan.minishopee.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 public class UserController {
-    @Autowired
-    private UserService userService;
+
+    private final UserService userService;
 
     @PostMapping("api/v1/users")
     public UserResponse createUser(@RequestBody UserRequest request) {

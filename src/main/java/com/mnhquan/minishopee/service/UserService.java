@@ -2,7 +2,6 @@ package com.mnhquan.minishopee.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mnhquan.minishopee.dto.UserRequest;
@@ -10,10 +9,13 @@ import com.mnhquan.minishopee.dto.UserResponse;
 import com.mnhquan.minishopee.entity.User;
 import com.mnhquan.minishopee.repository.UserRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+
+    private final UserRepository userRepository;
 
     private UserResponse convertToResponse(User user) {
         UserResponse response = new UserResponse();
@@ -33,6 +35,10 @@ public class UserService {
     public UserResponse createUser(UserRequest request) {
         User user = new User();
 
+        if (userRepository.existsByUsername(request.getUsername())) {
+            throw new RuntimeException("Username has been existed");
+        }
+
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());
         user.setEmail(request.getEmail());
@@ -50,7 +56,8 @@ public class UserService {
     }
 
     public UserResponse getUserById(String id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException(id));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
         return convertToResponse(user);
     }
 
