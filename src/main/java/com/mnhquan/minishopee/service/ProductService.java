@@ -45,7 +45,7 @@ public class ProductService {
 
         Category category = categoryRepository.findById(request.getCategory().getId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
-        User user = userRepository.findById(request.getSeller().getId())
+        User seller = userRepository.findById(request.getSeller().getId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         product.setName(request.getName());
@@ -53,8 +53,8 @@ public class ProductService {
         product.setPrice(request.getPrice());
         product.setStock(request.getStock());
         product.setImageUrl(request.getImageUrl());
-        product.setCategory(request.getCategory());
-        product.setSeller(request.getSeller());
+        product.setCategory(category);
+        product.setSeller(seller);
         product.setCreatedAt(request.getCreatedAt());
 
         Product savedProduct = productRepository.save(product);
@@ -81,7 +81,7 @@ public class ProductService {
 
         Category category = categoryRepository.findById(request.getCategory().getId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
-        User user = userRepository.findById(request.getSeller().getId())
+        User seller = userRepository.findById(request.getSeller().getId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         product.setName(request.getName());
@@ -89,8 +89,8 @@ public class ProductService {
         product.setPrice(request.getPrice());
         product.setStock(request.getStock());
         product.setImageUrl(request.getImageUrl());
-        product.setCategory(request.getCategory());
-        product.setSeller(request.getSeller());
+        product.setCategory(category);
+        product.setSeller(seller);
 
         Product updatedProduct = productRepository.save(product);
         return convertToResponse(updatedProduct);
