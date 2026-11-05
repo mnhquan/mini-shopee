@@ -149,7 +149,7 @@ public class OrderService {
         if (order.getOrderStatus() == OrderStatus.CANCELLED) {
             throw new RuntimeException("Cannot update a cancelled order");
         }
-        if (order.getOrderStatus() == OrderStatus.DELIVERIED) {
+        if (order.getOrderStatus() == OrderStatus.DELIVERED) {
             throw new RuntimeException("Cannot update a deliveried order");
         }
 

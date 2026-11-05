@@ -24,7 +24,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/api/v1/orders/checkout")
-    public OrderResponse checkoutOrder(@RequestParam("userId") String userId, @RequestBody OrderRequest request) {
+    public OrderResponse checkoutOrder(@RequestBody OrderRequest request) {
         return orderService.checkoutOrder(request);
     }
 
