@@ -123,15 +123,15 @@ Toàn bộ API đều trả về cấu trúc JSON thống nhất:
   ```
 
 ### 2. Cấu hình cơ sở dữ liệu
-Kiểm tra hoặc điều chỉnh thông số kết nối trong file [`src/main/resources/application.yaml`](src/main/resources/application.yaml):
+Dự án sử dụng cơ chế **Spring Profile (`local`)** để bảo mật thông tin nhạy cảm. Tạo file `src/main/resources/application-local.yaml` (file này đã được đưa vào `.gitignore` để không bị đẩy lên Git) với nội dung:
 ```yaml
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/mini_shopee_db
     username: postgres
-    password: 123
+    password: <your_db_password>
 ```
-*(Hoặc có thể cấu hình thông qua biến môi trường `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`)*.
+*(File cấu hình chính `application.yaml` sẽ tự động kích hoạt profile `local` khi chạy ở môi trường phát triển)*.
 
 ### 3. Build và Chạy ứng dụng
 
