@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mnhquan.minishopee.common.response.ApiResponse;
 import com.mnhquan.minishopee.dto.request.OrderRequest;
 import com.mnhquan.minishopee.dto.response.OrderResponse;
 import com.mnhquan.minishopee.entity.OrderStatus;
@@ -24,28 +25,28 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/api/v1/orders/checkout")
-    public OrderResponse checkoutOrder(@RequestBody OrderRequest request) {
-        return orderService.checkoutOrder(request);
+    public ApiResponse<OrderResponse> checkoutOrder(@RequestBody OrderRequest request) {
+        return ApiResponse.success("Order placed successfully", orderService.checkoutOrder(request));
     }
 
     @GetMapping("/api/v1/orders/user/{userId}")
-    public List<OrderResponse> getOrdersByUserId(@PathVariable("userId") String userId) {
-        return orderService.getOrdersByUserId(userId);
+    public ApiResponse<List<OrderResponse>> getOrdersByUserId(@PathVariable("userId") String userId) {
+        return ApiResponse.success(orderService.getOrdersByUserId(userId));
     }
 
     @GetMapping("/api/v1/orders/{id}")
-    public OrderResponse getOrderById(@PathVariable("id") String id) {
-        return orderService.getOrderById(id);
+    public ApiResponse<OrderResponse> getOrderById(@PathVariable("id") String id) {
+        return ApiResponse.success(orderService.getOrderById(id));
     }
 
     @PutMapping("/api/v1/orders/{id}/status")
-    public OrderResponse updateOrderStatus(@PathVariable("id") String id,
+    public ApiResponse<OrderResponse> updateOrderStatus(@PathVariable("id") String id,
             @RequestParam("status") OrderStatus newStatus) {
-        return orderService.updateOrderStatus(id, newStatus);
+        return ApiResponse.success("Order status updated successfully", orderService.updateOrderStatus(id, newStatus));
     }
 
     @PostMapping("/api/v1/orders/{id}/cancel")
-    public OrderResponse cancelOrder(@PathVariable("id") String id) {
-        return orderService.cancelOrder(id);
+    public ApiResponse<OrderResponse> cancelOrder(@PathVariable("id") String id) {
+        return ApiResponse.success("Order cancelled successfully", orderService.cancelOrder(id));
     }
 }

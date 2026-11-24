@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.mnhquan.minishopee.common.exception.AppException;
+import com.mnhquan.minishopee.common.exception.ErrorCode;
 import com.mnhquan.minishopee.dto.request.UserRequest;
 import com.mnhquan.minishopee.dto.response.UserResponse;
 import com.mnhquan.minishopee.entity.User;
@@ -36,7 +38,7 @@ public class UserService {
         User user = new User();
 
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new RuntimeException("Username has been existed");
+            throw new AppException(ErrorCode.USER_EXISTED);
         }
 
         user.setUsername(request.getUsername());

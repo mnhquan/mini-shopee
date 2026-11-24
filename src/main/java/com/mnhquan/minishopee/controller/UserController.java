@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mnhquan.minishopee.common.response.ApiResponse;
 import com.mnhquan.minishopee.dto.request.UserRequest;
 import com.mnhquan.minishopee.dto.response.UserResponse;
 import com.mnhquan.minishopee.service.UserService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -23,28 +25,28 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/api/v1/users")
-    public UserResponse createUser(@RequestBody UserRequest request) {
-        return userService.createUser(request);
+    public ApiResponse<UserResponse> createUser(@RequestBody @Valid UserRequest request) {
+        return ApiResponse.success("User has been created", userService.createUser(request));
     }
 
     @GetMapping("/api/v1/users")
-    public List<UserResponse> getAllUser() {
-        return userService.getAllUsers();
+    public ApiResponse<List<UserResponse>> getAllUser() {
+        return ApiResponse.success(userService.getAllUsers());
     }
 
     @GetMapping("/api/v1/users/{id}")
-    public UserResponse getUserById(@PathVariable("id") String id) {
-        return userService.getUserById(id);
+    public ApiResponse<UserResponse> getUserById(@PathVariable("id") String id) {
+        return ApiResponse.success(userService.getUserById(id));
     }
 
     @PutMapping("/api/v1/users/{id}")
-    public UserResponse updateUser(@PathVariable("id") String id, @RequestBody UserRequest request) {
-        return userService.updateUser(id, request);
+    public ApiResponse<UserResponse> updateUser(@PathVariable("id") String id, @RequestBody UserRequest request) {
+        return ApiResponse.success(userService.updateUser(id, request));
     }
 
     @DeleteMapping("/api/v1/users/{id}")
-    public String deleteUser(@PathVariable("id") String id) {
+    public ApiResponse<String> deleteUser(@PathVariable("id") String id) {
         userService.deleteUser(id);
-        return "User has been deleted successfully";
+        return ApiResponse.success("User has been deleted successfully", null);
     }
 }

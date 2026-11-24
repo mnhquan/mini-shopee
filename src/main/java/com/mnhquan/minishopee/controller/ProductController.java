@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mnhquan.minishopee.common.response.ApiResponse;
 import com.mnhquan.minishopee.dto.request.ProductRequest;
 import com.mnhquan.minishopee.dto.response.ProductResponse;
 import com.mnhquan.minishopee.service.ProductService;
@@ -23,33 +24,33 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/api/v1/products")
-    public ProductResponse createProduct(@RequestBody ProductRequest request) {
-        return productService.createProduct(request);
+    public ApiResponse<ProductResponse> createProduct(@RequestBody ProductRequest request) {
+        return ApiResponse.success("Product created successfully", productService.createProduct(request));
     }
 
     @GetMapping("/api/v1/products")
-    public List<ProductResponse> getAllProduct() {
-        return productService.getAllProduct();
+    public ApiResponse<List<ProductResponse>> getAllProduct() {
+        return ApiResponse.success(productService.getAllProduct());
     }
 
     @GetMapping("/api/v1/products/{id}")
-    public ProductResponse getProductById(@PathVariable("id") String id) {
-        return productService.getProductById(id);
+    public ApiResponse<ProductResponse> getProductById(@PathVariable("id") String id) {
+        return ApiResponse.success(productService.getProductById(id));
     }
 
     @GetMapping("/api/v1/products/category/{categoryId}")
-    public List<ProductResponse> getProductByCategoryId(@PathVariable("categoryId") String categoryId) {
-        return productService.getProductByCategoryId(categoryId);
+    public ApiResponse<List<ProductResponse>> getProductByCategoryId(@PathVariable("categoryId") String categoryId) {
+        return ApiResponse.success(productService.getProductByCategoryId(categoryId));
     }
 
     @PutMapping("/api/v1/products/{id}")
-    public ProductResponse updateProduct(@PathVariable("id") String id, @RequestBody ProductRequest request) {
-        return productService.updateProduct(id, request);
+    public ApiResponse<ProductResponse> updateProduct(@PathVariable("id") String id, @RequestBody ProductRequest request) {
+        return ApiResponse.success(productService.updateProduct(id, request));
     }
 
     @DeleteMapping("/api/v1/products/{id}")
-    public String deleteProduct(@PathVariable("id") String id) {
+    public ApiResponse<String> deleteProduct(@PathVariable("id") String id) {
         productService.deleteProduct(id);
-        return "Product has been deleted successfully";
+        return ApiResponse.success("Product has been deleted successfully", null);
     }
 }
