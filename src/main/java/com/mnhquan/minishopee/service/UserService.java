@@ -2,6 +2,8 @@ package com.mnhquan.minishopee.service;
 
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mnhquan.minishopee.common.exception.AppException;
@@ -41,8 +43,10 @@ public class UserService {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
 
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+
         user.setUsername(request.getUsername());
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());
         user.setFullName(request.getFullName());
         user.setPhoneNumber(request.getPhoneNumber());
