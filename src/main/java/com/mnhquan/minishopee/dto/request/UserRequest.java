@@ -1,6 +1,5 @@
 package com.mnhquan.minishopee.dto.request;
 
-import com.mnhquan.minishopee.common.exception.ErrorCode;
 import com.mnhquan.minishopee.entity.Role;
 
 import jakarta.validation.constraints.Email;
